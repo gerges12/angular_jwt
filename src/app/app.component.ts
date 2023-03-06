@@ -16,7 +16,7 @@ export class AppComponent {
   }
   logout() {
     this.token.signOut();
-    window.location.reload();
+    this.router.navigateByUrl('/');
   }
   signup() {
     this.router.navigateByUrl('auth/signup');

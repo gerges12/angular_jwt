@@ -1,0 +1,54 @@
+<p><strong> wellcome :</strong> {{ info.username }} {{ info.userid }} <br /></p>
+
+<form [formGroup]="transactionForm" class="w-100">
+  <div class="mt-4 mb-3">
+    <div>
+      <div class="input-icons mb-2">
+        <input
+          formControlName="accountRecieverId"
+          type="text"
+          size="50"
+          height="30 px"
+          margin="20 px"
+          placeholder="accountRecieverId"
+        /><br />
+      </div>
+    </div>
+
+    <div>
+      <div class="input-icons mb-2">
+        <input
+          formControlName="amount"
+          type="text"
+          size="50"
+          class="input-field border-top-0 border-right-0 border-left-0 pb-2"
+          placeholder="amount"
+        /><br />
+      </div>
+    </div>
+
+    <div>
+      <div class="input-icons mb-2">
+        <input
+          formControlName="description"
+          type="text"
+          size="50"
+          class="input-field border-top-0 border-right-0 border-left-0 pb-2"
+          placeholder="description"
+        /><br />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 mt-3">
+      <button
+        class="btn_normal_send btn w100"
+        type="submit"
+        (click)="addTransaction()"
+      >
+        {{ "make transaction" }}
+      </button>
+    </div>
+  </div>
+</form>

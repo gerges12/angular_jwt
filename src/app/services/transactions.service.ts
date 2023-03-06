@@ -5,6 +5,11 @@ import { Observable } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
+
+const httpOptions2 = {
+  headers: new HttpHeaders({ 'Content-Type': 'text/plain; charset=utf-8' }),
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -21,6 +26,14 @@ export class TransactionsService {
 
   pendingTransaction() {
     return this.http.get<any>(this.pendingtransactionEndPoint, httpOptions);
+  }
+
+  makeTransaction(transActionInfo: any): Observable<any> {
+    return this.http.post<any>(
+      this.makeTransactionEndPoint,
+      transActionInfo,
+      httpOptions2
+    );
   }
 
   acceptToTransaction(transactionId: number): Observable<any> {

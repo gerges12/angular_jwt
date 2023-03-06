@@ -18,6 +18,7 @@ import { RegisterComponent } from './Auth/components/register/register.component
 import { PasswordModule } from 'primeng/password';
 import { CalendarModule } from 'primeng/calendar';
 import { httpInterceptorProviders } from './Auth/services/auth-interceptor';
+import { ClientComponent } from './components/client/client.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { httpInterceptorProviders } from './Auth/services/auth-interceptor';
     EmployeeComponent,
     LoginComponent,
     RegisterComponent,
+    ClientComponent,
   ],
   imports: [
     BrowserModule,

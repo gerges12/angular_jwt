@@ -40,13 +40,13 @@ export class LoginComponent implements OnInit {
       this.tokenStorage.saveUsername(data.username);
       this.tokenStorage.saveUserid(data.userid);
       this.tokenStorage.saveUsertype(data.userType);
-      // console.log(data);
-    });
 
-    this.logged();
-  }
-  logged() {
-    this.router.navigateByUrl('employee');
+      if (data.userType == 'client') {
+        this.router.navigate(['/client']);
+      } else {
+        this.router.navigate(['/employee']);
+      }
+    });
   }
 
   ngOnDestroy(): void {
