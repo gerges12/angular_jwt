@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { LoginResponse } from 'src/app/model/loginResponse.model';
 import { TokenStorageService } from '../../services/token-storage.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +19,14 @@ import { TokenStorageService } from '../../services/token-storage.service';
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
+  message: string | undefined;
 
   constructor(
     private router: Router,
     private readonly fb: FormBuilder,
     private auth: AuthService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private messageService: MessageService
   ) {
     this.form = this.fb.group({
       username: [null, [Validators.required, Validators.minLength(5)]],
@@ -34,19 +37,35 @@ export class LoginComponent implements OnInit {
     return this.form.controls;
   }
   ngOnInit(): void {}
-  submitForm() {
-    this.auth.login(this.form.value).subscribe((data: LoginResponse) => {
-      this.tokenStorage.saveToken(data.authenticationToken);
-      this.tokenStorage.saveUsername(data.username);
-      this.tokenStorage.saveUserid(data.userid);
-      this.tokenStorage.saveUsertype(data.userType);
 
-      if (data.userType == 'client') {
-        this.router.navigate(['/client']);
-      } else {
-        this.router.navigate(['/employee']);
-      }
+  addSingle() {
+    this.messageService.add({
+      severity: this.message,
+      summary: 'Service Message',
+      detail: this.message,
     });
+  }
+
+  submitForm() {
+    this.auth.login(this.form.value).subscribe(
+      (data: LoginResponse) => {
+        this.tokenStorage.saveToken(data.authenticationToken);
+        this.tokenStorage.saveUsername(data.username);
+        this.tokenStorage.saveUserid(data.userid);
+        this.tokenStorage.saveUsertype(data.userType);
+
+        if (data.userType == 'client') {
+          this.router.navigate(['/client']);
+        } else {
+          this.router.navigate(['/employee']);
+        }
+      },
+      (error) => {
+        console.log('hhh', error);
+        this.message = error.error.message;
+        this.addSingle();
+      }
+    );
   }
 
   ngOnDestroy(): void {
