@@ -79,10 +79,10 @@ export class RegisterComponent implements OnInit {
         (data) => {
           console.log('the response ya ma3lam', data);
           // : console.log('malak4 fe eltayeb naseb', Error);
+        },
+        (error) => {
+          console.log('malak4 fe eltayeb naseb', error);
         }
-        // (error) => {
-        //   console.log('malak4 fe eltayeb naseb', error);
-        // }
       );
     }
   }

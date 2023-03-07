@@ -1,6 +1,7 @@
 import { TokenStorageService } from './../../Auth/services/token-storage.service';
 import { TransactionsService } from './../../services/transactions.service';
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 interface Product {
   id?: string;
@@ -23,10 +24,12 @@ interface Product {
 export class EmployeeComponent implements OnInit {
   transactions!: any[];
   info: any;
+  message: string | undefined;
 
   constructor(
     private trans: TransactionsService,
-    private token: TokenStorageService
+    private token: TokenStorageService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -41,10 +44,19 @@ export class EmployeeComponent implements OnInit {
     };
   }
 
+  addSingle() {
+    this.messageService.add({
+      severity: this.message,
+      summary: 'Service Message',
+      detail: this.message,
+    });
+  }
+
   accepttransaction(transactionId: number) {
     this.trans.acceptToTransaction(transactionId).subscribe((data) => {
+      this.message = data;
+      this.addSingle();
       console.log('replaing of transaction is ', data);
-      window.location.reload();
     });
   }
 
@@ -53,7 +65,8 @@ export class EmployeeComponent implements OnInit {
 
     this.trans.rejectToTransaction(transactionId).subscribe(
       (data) => {
-        console.log('replying of transaction is ', data);
+        this.message = data;
+        this.addSingle();
       },
       (error) => {}
     );

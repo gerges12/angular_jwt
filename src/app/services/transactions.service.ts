@@ -7,8 +7,13 @@ const httpOptions = {
 };
 
 const httpOptions2 = {
-  headers: new HttpHeaders({ 'Content-Type': 'text/plain; charset=utf-8' }),
+  headers: new HttpHeaders({ 'Content-Type': 'text', responseType: 'text' }),
 };
+
+let headers: HttpHeaders = new HttpHeaders({
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+});
 
 @Injectable({
   providedIn: 'root',
@@ -29,26 +34,20 @@ export class TransactionsService {
   }
 
   makeTransaction(transActionInfo: any): Observable<any> {
-    return this.http.post<any>(
-      this.makeTransactionEndPoint,
-      transActionInfo,
-      httpOptions2
-    );
+    return this.http.post(this.makeTransactionEndPoint, transActionInfo, {
+      responseType: 'text',
+    });
   }
 
   acceptToTransaction(transactionId: number): Observable<any> {
-    return this.http.post<any>(
-      this.acceptToTransactionEndPoint,
-      transactionId,
-      httpOptions
-    );
+    return this.http.post(this.acceptToTransactionEndPoint, transactionId, {
+      responseType: 'text',
+    });
   }
 
   rejectToTransaction(transactionId: number): Observable<any> {
-    return this.http.post<any>(
-      this.rejectToTransactionEndPoint,
-      transactionId,
-      httpOptions
-    );
+    return this.http.post(this.rejectToTransactionEndPoint, transactionId, {
+      responseType: 'text',
+    });
   }
 }
