@@ -42,13 +42,10 @@
 
   <div class="row">
     <div class="col-lg-4 mt-3">
-      <button
-        class="btn_normal_send btn w100"
-        type="submit"
-        (click)="addTransaction()"
-      >
+      <button type="submit" (click)="addTransaction()">
         {{ "make transaction" }}
       </button>
     </div>
   </div>
 </form>
+<p-toast position="top-right"></p-toast>

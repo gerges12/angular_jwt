@@ -6,10 +6,6 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
-const httpOptions2 = {
-  headers: new HttpHeaders({ 'Content-Type': 'text', responseType: 'text' }),
-};
-
 let headers: HttpHeaders = new HttpHeaders({
   Accept: 'application/json',
   'Content-Type': 'application/json',
@@ -34,9 +30,11 @@ export class TransactionsService {
   }
 
   makeTransaction(transActionInfo: any): Observable<any> {
-    return this.http.post(this.makeTransactionEndPoint, transActionInfo, {
-      responseType: 'text',
-    });
+    return this.http.post(
+      this.makeTransactionEndPoint,
+      transActionInfo,
+      httpOptions
+    );
   }
 
   acceptToTransaction(transactionId: number): Observable<any> {

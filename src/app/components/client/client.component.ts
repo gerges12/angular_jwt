@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from 'src/app/Auth/services/token-storage.service';
 import { TransActionInfo } from 'src/app/model/TransActionInfo.model';
 import { TransactionsService } from 'src/app/services/transactions.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-client',
@@ -15,10 +16,12 @@ export class ClientComponent implements OnInit {
   form: any;
   transactionForm!: FormGroup;
   private transActionInfo!: TransActionInfo;
+  message: string | undefined;
 
   constructor(
     private token: TokenStorageService,
-    private transactionService: TransactionsService
+    private transactionService: TransactionsService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -42,6 +45,14 @@ export class ClientComponent implements OnInit {
     window.location.reload();
   }
 
+  addSingle() {
+    this.messageService.add({
+      severity: this.message,
+      summary: 'Service Message',
+      detail: this.message,
+    });
+  }
+
   addTransaction() {
     this.transActionInfo = new TransActionInfo(
       this.transactionForm.value.accountreciever,
@@ -56,13 +67,13 @@ export class ClientComponent implements OnInit {
         .makeTransaction(this.transactionForm.value)
         .subscribe(
           (data) => {
-            console.log('kjh', data);
+            this.message = data.message;
+            this.addSingle();
+          },
+          (error) => {
+            this.message = error.error.message;
+            this.addSingle();
           }
-          /* error => {
-          console.log("df" ,  error)  ;
-
-
-        }*/
         );
     }
   }
