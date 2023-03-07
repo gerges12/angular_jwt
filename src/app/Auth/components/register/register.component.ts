@@ -1,5 +1,5 @@
 import { AuthService } from './../../services/auth.service';
-import { SignUpInfo } from './../../../model/signupRequest.model';
+import { SignUpInfo } from '../../../model/SignUpInfo.model';
 import {
   AbstractControl,
   FormBuilder,
@@ -9,6 +9,8 @@ import {
 } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+
 interface UserType {
   name: string;
   type: string;
@@ -22,6 +24,8 @@ export class RegisterComponent implements OnInit {
   form!: FormGroup;
   employeeType: UserType[] = [];
   selectedEmployeeType: string = '';
+  message: string | undefined;
+
   selectedDate!: Date;
   signup: SignUpInfo = {
     name: '',
@@ -34,7 +38,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private readonly fb: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +70,14 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  addSingle() {
+    this.messageService.add({
+      severity: this.message,
+      summary: 'Service Message',
+      detail: this.message,
+    });
+  }
+
   FormSubmition() {
     if (this.form.valid) {
       this.userTypeVal();
@@ -74,14 +87,14 @@ export class RegisterComponent implements OnInit {
       this.signup.phonenumber = this.form.controls['phone'].value;
       this.signup.username = this.form.controls['username'].value;
       this.signup.usertype = this.selectedEmployeeType;
-      console.log('law 4a8ala rawa7 ', this.signup);
       this.auth.signUp(this.signup).subscribe(
         (data) => {
-          console.log('the response ya ma3lam', data);
-          // : console.log('malak4 fe eltayeb naseb', Error);
+          this.message = data.message;
+          this.addSingle();
         },
         (error) => {
-          console.log('malak4 fe eltayeb naseb', error);
+          this.message = error.error.message;
+          this.addSingle();
         }
       );
     }
