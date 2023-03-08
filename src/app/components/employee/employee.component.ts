@@ -3,6 +3,7 @@ import { TransactionsService } from './../../services/transactions.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 interface Product {
   id?: string;
@@ -31,7 +32,8 @@ export class EmployeeComponent implements OnInit {
     private trans: TransactionsService,
     private token: TokenStorageService,
     private messageService: MessageService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -59,6 +61,8 @@ export class EmployeeComponent implements OnInit {
       this.message = this.translate.instant(data);
       this.addSingle();
       console.log('replaing of transaction is ', data);
+
+      setTimeout(() => this.router.navigate(['/employee']), 1);
     });
   }
 

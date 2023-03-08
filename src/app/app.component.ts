@@ -14,7 +14,7 @@ export class AppComponent {
     private token: TokenStorageService,
     private translate: TranslateService
   ) {
-    translate.setDefaultLang('ar');
+    translate.setDefaultLang('en');
   }
 
   ngOnInit() {}

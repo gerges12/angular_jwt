@@ -16,5 +16,12 @@
   "accept_done_succefully": "تمت الموافقة بنجاح",
   "reject_done_succefully": "تم الرفض بنجاح",
   "download": "تحميل",
-  "download_done_succefully": "تم التحميل بنجاح"
+  "download_done_succefully": "تم التحميل بنجاح",
+  "login": "تسجيل دخول",
+  "logout": "تسجيل خروج",
+  "register": "انشاء حساب",
+  "home": "الصفحه الرئيسية",
+  "having_account": "اذ كان لديك حساب سجل الان",
+  "ACCEPTED": "مقبول",
+  "REJECTED": "مرفوض"
 }

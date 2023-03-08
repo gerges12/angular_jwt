@@ -19,14 +19,20 @@
             class="nav-link active text-white"
             aria-current="page"
             routerLink="/"
-            >Home</a
+            >{{ "home" | translate }}</a
           >
         </li>
       </ul>
 
-      <button class="btn btn-success" (click)="signup()">Register</button>
-      <button class="btn btn-danger ms-1" (click)="login()">Login</button>
-      <button class="btn btn-danger ms-1" (click)="logout()">logut</button>
+      <button class="btn btn-success" (click)="signup()">
+        {{ "register" | translate }}
+      </button>
+      <button class="btn btn-danger ms-1" (click)="login()">
+        {{ "login" | translate }}
+      </button>
+      <button class="btn btn-danger ms-1" (click)="logout()">
+        {{ "logout" | translate }}
+      </button>
     </div>
   </div>
 </nav>

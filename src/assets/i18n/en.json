@@ -16,5 +16,12 @@
   "accept_done_succefully": "accept done succefully",
   "reject_done_succefully": "reject done succefully ",
   "download": "download",
-  "download_done_succefully": "download done succefully"
+  "download_done_succefully": "download done succefully",
+  "login": "login",
+  "logout": "logout",
+  "register": "register",
+  "home": "home",
+  "having_account": "  if you account Please login. here",
+  "ACCEPTED": "ACCEPTED",
+  "REJECTED": "REJECTED"
 }

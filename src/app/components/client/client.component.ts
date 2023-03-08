@@ -32,6 +32,10 @@ export class ClientComponent implements OnInit {
   ngOnInit() {
     this.trans.replayedTransaction(this.token.getUserid()).subscribe((data) => {
       console.log('fgh', data);
+
+      data.forEach((t: { transactionStatus: string }) => {
+        t.transactionStatus = this.translate.instant(t.transactionStatus);
+      });
       this.transactions = data;
     });
 

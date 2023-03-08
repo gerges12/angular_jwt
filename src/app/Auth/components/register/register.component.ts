@@ -91,6 +91,7 @@ export class RegisterComponent implements OnInit {
         (data) => {
           this.message = data.message;
           this.addSingle();
+          this.router.navigate(['/auth/login']);
         },
         (error) => {
           this.message = error.error.message;
