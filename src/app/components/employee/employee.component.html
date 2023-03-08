@@ -3,11 +3,11 @@
 <p-table [value]="transactions" [tableStyle]="{ 'min-width': '50rem' }">
   <ng-template pTemplate="header">
     <tr>
-      <th>transaction sender</th>
-      <th>transaction reciever</th>
-      <th>amount</th>
-      <th>description</th>
-      <th>reply</th>
+      <th>{{ "transaction_sender" | translate }}</th>
+      <th>{{ "transaction_reciever" | translate }}</th>
+      <th>{{ "amount" | translate }}</th>
+      <th>{{ "description" | translate }}</th>
+      <th>{{ "reply" | translate }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-transaction>
@@ -19,13 +19,13 @@
       <td>
         <div class="sizes">
           <p-button
-            label="accept"
+            label=" {{ 'accept' | translate }}  "
             (onClick)="accepttransaction(transaction.id)"
             icon="pi pi-check"
             styleClass="p-button-sm"
           ></p-button>
           <p-button
-            label="reject"
+            label=" {{ 'reject' | translate }}  "
             (onClick)="rejecttransaction(transaction.id)"
             icon="pi pi-check"
             styleClass="p-button"

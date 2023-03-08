@@ -5,6 +5,7 @@ import { TokenStorageService } from 'src/app/Auth/services/token-storage.service
 import { TransActionInfo } from 'src/app/model/TransActionInfo.model';
 import { TransactionsService } from 'src/app/services/transactions.service';
 import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-client',
@@ -24,7 +25,8 @@ export class ClientComponent implements OnInit {
     private token: TokenStorageService,
     private transactionService: TransactionsService,
     private messageService: MessageService,
-    private trans: TransactionsService
+    private trans: TransactionsService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -75,14 +77,24 @@ export class ClientComponent implements OnInit {
         .makeTransaction(this.transactionForm.value)
         .subscribe(
           (data) => {
-            this.message = data.message;
+            console.log(data.message);
+            this.message = this.translate.instant(data.message);
             this.addSingle();
           },
           (error) => {
-            this.message = error.error.message;
+            this.message = this.translate.instant(error.error.message);
             this.addSingle();
           }
         );
     }
+  }
+
+  downloadPDF() {
+    this.trans
+      .downloadTransactionForCurrentUser(this.token.getUserid())
+      .subscribe((data) => {
+        this.message = this.translate.instant(data);
+        this.addSingle();
+      });
   }
 }

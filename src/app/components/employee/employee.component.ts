@@ -2,6 +2,7 @@ import { TokenStorageService } from './../../Auth/services/token-storage.service
 import { TransactionsService } from './../../services/transactions.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 interface Product {
   id?: string;
@@ -29,7 +30,8 @@ export class EmployeeComponent implements OnInit {
   constructor(
     private trans: TransactionsService,
     private token: TokenStorageService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -54,7 +56,7 @@ export class EmployeeComponent implements OnInit {
 
   accepttransaction(transactionId: number) {
     this.trans.acceptToTransaction(transactionId).subscribe((data) => {
-      this.message = data;
+      this.message = this.translate.instant(data);
       this.addSingle();
       console.log('replaing of transaction is ', data);
     });
@@ -65,7 +67,7 @@ export class EmployeeComponent implements OnInit {
 
     this.trans.rejectToTransaction(transactionId).subscribe(
       (data) => {
-        this.message = data;
+        this.message = this.translate.instant(data);
         this.addSingle();
       },
       (error) => {}

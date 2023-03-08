@@ -1,4 +1,20 @@
 {
   "title": "النظام البنكي",
-  "wellcome": "مرحبا"
+  "wellcome": "مرحبا",
+  "make_transaction": "ارسال العملية",
+  "transaction_sender": "الراسل",
+  "transaction_reciever": "المستلم",
+  "amount": "الرصيد المحول",
+  "description": "الوصف",
+  "status": "حاله الطلب ",
+  "accountRecieverId": "رقم حساب المستلم",
+  "transaction_done_successfully": "تمت العمليه بنجاح",
+  "you_have_not_enough_balance": "ليس لديك رصيد كافي",
+  "reply": "الرد",
+  "accept": "موافقة",
+  "reject": "رفض",
+  "accept_done_succefully": "تمت الموافقة بنجاح",
+  "reject_done_succefully": "تم الرفض بنجاح",
+  "download": "تحميل",
+  "download_done_succefully": "تم التحميل بنجاح"
 }

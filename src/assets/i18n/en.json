@@ -1,4 +1,20 @@
 {
-  "title": "banking_system",
-  "wellcome": "wellcome"
+  "title": "banking system",
+  "wellcome": "wellcome",
+  "make_transaction": "make transaction",
+  "transaction_sender": "transaction sender",
+  "transaction_reciever": "transaction reciever",
+  "amount": "amount",
+  "description": "description",
+  "status": "status",
+  "accountRecieverId": "accountRecieverId",
+  "transaction_done_successfully": "transaction done successfully",
+  "you_have_not_enough_balance": "you have not enough balance",
+  "reply": "reply",
+  "accept": "accept",
+  "reject": "reject",
+  "accept_done_succefully": "accept done succefully",
+  "reject_done_succefully": "reject done succefully ",
+  "download": "download",
+  "download_done_succefully": "download done succefully"
 }

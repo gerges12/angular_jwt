@@ -26,6 +26,9 @@ export class TransactionsService {
 
   private repliedtransactionEndPoint =
     'http://localhost:8080/MIS/transaction/getrepliedtransaction/';
+
+  private downloadtransactionEndPoint =
+    'http://localhost:8080/MIS/transaction/downlowdPdf/';
   constructor(private http: HttpClient) {}
 
   pendingTransaction() {
@@ -37,6 +40,12 @@ export class TransactionsService {
       this.repliedtransactionEndPoint + userId,
       httpOptions
     );
+  }
+
+  downloadTransactionForCurrentUser(userId: number) {
+    return this.http.get(this.downloadtransactionEndPoint + userId, {
+      responseType: 'text',
+    });
   }
 
   makeTransaction(transActionInfo: any): Observable<any> {
