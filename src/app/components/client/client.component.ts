@@ -12,6 +12,8 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./client.component.scss'],
 })
 export class ClientComponent implements OnInit {
+  transactions!: any[];
+
   info: any;
   form: any;
   transactionForm!: FormGroup;
@@ -21,10 +23,16 @@ export class ClientComponent implements OnInit {
   constructor(
     private token: TokenStorageService,
     private transactionService: TransactionsService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private trans: TransactionsService
   ) {}
 
   ngOnInit() {
+    this.trans.replayedTransaction(this.token.getUserid()).subscribe((data) => {
+      console.log('fgh', data);
+      this.transactions = data;
+    });
+
     this.transactionForm = new FormGroup({
       accountRecieverId: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),

@@ -11,3 +11,19 @@
 
   <a routerLink="/auth/login"><button class="btn btn-primary">login</button></a>
 </div>
+
+<nav class="navbar navbar-dark navbar-expand-lg">
+  <a class="navbar-brand">Phrase</a>
+
+  <span class="spacer"></span>
+</nav>
+
+<select
+  class="security-btn ml-1"
+  aria-label="Default select example"
+  (change)="changeLanguage($event)"
+  style="margin-left: 5px"
+>
+  <option value="en">English</option>
+  <option value="ar">Arabic</option>
+</select>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './Auth/services/token-storage.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,13 @@ import { TokenStorageService } from './Auth/services/token-storage.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private router: Router, private token: TokenStorageService) {}
+  constructor(
+    private router: Router,
+    private token: TokenStorageService,
+    private translate: TranslateService
+  ) {
+    translate.setDefaultLang('ar');
+  }
 
   ngOnInit() {}
   login() {

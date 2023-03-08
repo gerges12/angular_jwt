@@ -23,10 +23,20 @@ export class TransactionsService {
     'http://localhost:8080/MIS/transaction/Accepttotransaction';
   private rejectToTransactionEndPoint =
     'http://localhost:8080/MIS/transaction/Rejecttotransaction';
+
+  private repliedtransactionEndPoint =
+    'http://localhost:8080/MIS/transaction/getrepliedtransaction/';
   constructor(private http: HttpClient) {}
 
   pendingTransaction() {
     return this.http.get<any>(this.pendingtransactionEndPoint, httpOptions);
+  }
+
+  replayedTransaction(userId: number) {
+    return this.http.get<any>(
+      this.repliedtransactionEndPoint + userId,
+      httpOptions
+    );
   }
 
   makeTransaction(transActionInfo: any): Observable<any> {

@@ -21,6 +21,8 @@ import { httpInterceptorProviders } from './Auth/services/auth-interceptor';
 import { ClientComponent } from './components/client/client.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { NgxTranslateModule } from './translate/translate.module';
+import { TranslateService } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -46,8 +48,9 @@ import { MessageService } from 'primeng/api';
     PasswordModule,
     CalendarModule,
     ToastModule,
+    NgxTranslateModule,
   ],
-  providers: [httpInterceptorProviders, MessageService],
+  providers: [httpInterceptorProviders, MessageService, TranslateService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
