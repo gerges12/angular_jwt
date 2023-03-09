@@ -2,7 +2,11 @@
   <strong> {{ "wellcome" | translate }} :</strong> {{ info.username }}
 </p>
 
-<p-dialog header="Title" [(visible)]="display">
+<p-dialog
+  header="{{ 'dialog_title' | translate }}
+"
+  [(visible)]="display"
+>
   <form [formGroup]="transactionForm" class="w-100">
     <div class="mt-4 mb-3">
       <div>

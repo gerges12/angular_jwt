@@ -32,15 +32,7 @@ export class ClientComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.trans.replayedTransaction(this.token.getUserid()).subscribe((data) => {
-      console.log('fgh', data);
-
-      data.forEach((t: { transactionStatus: string }) => {
-        t.transactionStatus = this.translate.instant(t.transactionStatus);
-      });
-      this.transactions = data;
-    });
-
+    this.loadDataTable();
     this.transactionForm = new FormGroup({
       accountRecieverId: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
@@ -63,8 +55,13 @@ export class ClientComponent implements OnInit {
 
   addSingle() {
     this.messageService.add({
-      severity: this.message,
-      summary: 'Service Message',
+      severity: 'success',
+      detail: this.message,
+    });
+  }
+  adderrorMessage() {
+    this.messageService.add({
+      severity: 'error',
       detail: this.message,
     });
   }
@@ -90,13 +87,25 @@ export class ClientComponent implements OnInit {
             console.log(data.message);
             this.message = this.translate.instant(data.message);
             this.addSingle();
+            this.loadDataTable();
           },
           (error) => {
             this.message = this.translate.instant(error.error.message);
-            this.addSingle();
+            this.adderrorMessage();
           }
         );
     }
+  }
+
+  loadDataTable() {
+    this.trans.replayedTransaction(this.token.getUserid()).subscribe((data) => {
+      console.log('fgh', data);
+
+      data.forEach((t: { transactionStatus: string }) => {
+        t.transactionStatus = this.translate.instant(t.transactionStatus);
+      });
+      this.transactions = data;
+    });
   }
 
   downloadPDF() {

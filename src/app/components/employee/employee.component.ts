@@ -47,8 +47,7 @@ export class EmployeeComponent implements OnInit {
 
   addSingle() {
     this.messageService.add({
-      severity: this.message,
-      summary: 'Service Message',
+      severity: 'success',
       detail: this.message,
     });
   }
