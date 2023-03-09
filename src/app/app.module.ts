@@ -23,6 +23,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { NgxTranslateModule } from './translate/translate.module';
 import { TranslateService } from '@ngx-translate/core';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { TranslateService } from '@ngx-translate/core';
     CalendarModule,
     ToastModule,
     NgxTranslateModule,
+    DialogModule,
   ],
   providers: [httpInterceptorProviders, MessageService, TranslateService],
   bootstrap: [AppComponent],

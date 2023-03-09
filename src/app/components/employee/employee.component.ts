@@ -1,7 +1,7 @@
 import { TokenStorageService } from './../../Auth/services/token-storage.service';
 import { TransactionsService } from './../../services/transactions.service';
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
@@ -37,10 +37,7 @@ export class EmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.trans.pendingTransaction().subscribe((data) => {
-      this.transactions = data;
-    });
-
+    this.loadDataTable();
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -60,9 +57,7 @@ export class EmployeeComponent implements OnInit {
     this.trans.acceptToTransaction(transactionId).subscribe((data) => {
       this.message = this.translate.instant(data);
       this.addSingle();
-      console.log('replaing of transaction is ', data);
-
-      setTimeout(() => this.router.navigate(['/employee']), 1);
+      this.loadDataTable();
     });
   }
 
@@ -73,8 +68,15 @@ export class EmployeeComponent implements OnInit {
       (data) => {
         this.message = this.translate.instant(data);
         this.addSingle();
+        this.loadDataTable();
       },
       (error) => {}
     );
+  }
+
+  loadDataTable() {
+    this.trans.pendingTransaction().subscribe((data) => {
+      this.transactions = data;
+    });
   }
 }

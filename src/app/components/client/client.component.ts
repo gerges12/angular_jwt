@@ -13,6 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./client.component.scss'],
 })
 export class ClientComponent implements OnInit {
+  display: boolean = false;
+
   transactions!: any[];
 
   info: any;
@@ -65,6 +67,10 @@ export class ClientComponent implements OnInit {
       summary: 'Service Message',
       detail: this.message,
     });
+  }
+
+  showDialog() {
+    this.display = true;
   }
 
   addTransaction() {
