@@ -1,101 +1,89 @@
-<p>
-  <strong> {{ "wellcome" | translate }} :</strong> {{ info.username }}
-</p>
+<div *ngIf="isClient; else go">
+  <p>
+    <strong> {{ "wellcome" | translate }} :</strong> {{ info.username }}
+  </p>
 
-<p-dialog
-  header="{{ 'dialog_title' | translate }}
+  <p-dialog
+    header="{{ 'dialog_title' | translate }}
 "
-  [(visible)]="display"
->
-  <form [formGroup]="transactionForm" class="w-100">
-    <div class="mt-4 mb-3">
-      <div>
-        <div class="input-icons mb-2">
-          <input
-            formControlName="accountRecieverId"
-            type="text"
-            size="50"
-            height="30 px"
-            margin="20 px"
-            placeholder="{{ 'accountRecieverId' | translate }}"
-          /><br />
-        </div>
-      </div>
+    [(visible)]="display"
+  >
+    <form [formGroup]="transactionForm" class="w-100">
+      <input
+        formControlName="accountRecieverId"
+        type="text"
+        placeholder="{{ 'accountRecieverId' | translate }}"
+      />
 
-      <div>
-        <div class="input-icons mb-2">
-          <input
-            formControlName="amount"
-            type="text"
-            size="50"
-            class="input-field border-top-0 border-right-0 border-left-0 pb-2"
-            placeholder="{{ 'amount' | translate }}"
-          /><br />
-        </div>
-      </div>
+      <input
+        formControlName="amount"
+        type="text"
+        placeholder="{{ 'amount' | translate }}"
+      />
 
-      <div>
-        <div class="input-icons mb-2">
-          <input
-            formControlName="description"
-            type="text"
-            size="50"
-            class="input-field border-top-0 border-right-0 border-left-0 pb-2"
-            placeholder="{{ 'description' | translate }}"
-          /><br />
+      <input
+        formControlName="description"
+        type="text"
+        placeholder="{{ 'description' | translate }}"
+      />
+
+      <div class="row">
+        <div class="col-lg-4 mt-3">
+          <button
+            class="btn btn-success"
+            type="submit"
+            (click)="addTransaction()"
+          >
+            {{ "done" | translate }}
+          </button>
         </div>
       </div>
+    </form>
+  </p-dialog>
+  <button
+    type="button"
+    class="btn btn-success"
+    (click)="showDialog()"
+    icon="pi pi-info-circle"
+  >
+    {{ "make_transaction" | translate }}
+  </button>
+
+  <p-table [value]="transactions" [tableStyle]="{ 'min-width': '30rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ "transaction_sender" | translate }}</th>
+        <th>{{ "transaction_reciever" | translate }}</th>
+        <th>{{ "amount" | translate }}</th>
+        <th>{{ "description" | translate }}</th>
+        <th>{{ "status" | translate }}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-transaction>
+      <tr>
+        <td>{{ transaction.accountSenderId }}</td>
+        <td>{{ transaction.accountRecieverId }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.description }}</td>
+        <td>{{ transaction.transactionStatus }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div class="row">
+    <div class="col-lg-4 mt-3">
+      <button class="btn btn-success" (click)="downloadPDF()">
+        {{ "download" | translate }}
+      </button>
     </div>
-
-    <div class="row">
-      <div class="col-lg-4 mt-3">
-        <button
-          class="btn btn-success"
-          type="submit"
-          (click)="addTransaction()"
-        >
-          {{ "done" | translate }}
-        </button>
-      </div>
-    </div>
-  </form>
-</p-dialog>
-<button
-  type="button"
-  class="btn btn-success"
-  (click)="showDialog()"
-  icon="pi pi-info-circle"
->
-  {{ "make_transaction" | translate }}
-</button>
-
-<p-table [value]="transactions" [tableStyle]="{ 'min-width': '30rem' }">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>{{ "transaction_sender" | translate }}</th>
-      <th>{{ "transaction_reciever" | translate }}</th>
-      <th>{{ "amount" | translate }}</th>
-      <th>{{ "description" | translate }}</th>
-      <th>{{ "status" | translate }}</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-transaction>
-    <tr>
-      <td>{{ transaction.accountSenderId }}</td>
-      <td>{{ transaction.accountRecieverId }}</td>
-      <td>{{ transaction.amount }}</td>
-      <td>{{ transaction.description }}</td>
-      <td>{{ transaction.transactionStatus }}</td>
-    </tr>
-  </ng-template>
-</p-table>
-
-<div class="row">
-  <div class="col-lg-4 mt-3">
-    <button class="btn btn-success" (click)="downloadPDF()">
-      {{ "download" | translate }}
-    </button>
   </div>
+
+  <p-toast position="top-right"></p-toast>
 </div>
 
-<p-toast position="top-right"></p-toast>
+<ng-template #go>
+  <div>
+    <h1>404 Error</h1>
+    <h1>Page Not Found</h1>
+  </div>
+</ng-template>

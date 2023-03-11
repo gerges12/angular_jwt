@@ -22,6 +22,7 @@ export class ClientComponent implements OnInit {
   transactionForm!: FormGroup;
   private transActionInfo!: TransActionInfo;
   message: string | undefined;
+  isClient: boolean | undefined;
 
   constructor(
     private token: TokenStorageService,
@@ -46,6 +47,10 @@ export class ClientComponent implements OnInit {
       username: this.token.getUsername(),
       userid: this.token.getUserid(),
     };
+
+    if (this.token.getUsertype() == 'client') {
+      this.isClient = true;
+    }
   }
 
   logout() {

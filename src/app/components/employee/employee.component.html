@@ -1,38 +1,47 @@
-<strong> wellcome :</strong> {{ info.username }} {{ info.userid }} <br />
+<div *ngIf="isEmployee; else go">
+  <strong> wellcome :</strong> {{ info.username }} {{ info.userid }} <br />
 
-<p-table [value]="transactions" [tableStyle]="{ 'min-width': '50rem' }">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>{{ "transaction_sender" | translate }}</th>
-      <th>{{ "transaction_reciever" | translate }}</th>
-      <th>{{ "amount" | translate }}</th>
-      <th>{{ "description" | translate }}</th>
-      <th>{{ "reply" | translate }}</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-transaction>
-    <tr>
-      <td>{{ transaction.accountSenderId }}</td>
-      <td>{{ transaction.accountRecieverId }}</td>
-      <td>{{ transaction.amount }}</td>
-      <td>{{ transaction.description }}</td>
-      <td>
-        <div class="sizes">
-          <p-button
-            label=" {{ 'accept' | translate }}  "
-            (onClick)="accepttransaction(transaction.id)"
-            icon="pi pi-check"
-            styleClass="p-button-sm"
-          ></p-button>
-          <p-button
-            label=" {{ 'reject' | translate }}  "
-            (onClick)="rejecttransaction(transaction.id)"
-            icon="pi pi-check"
-            styleClass="p-button"
-          ></p-button>
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
-<p-toast position="top-right"></p-toast>
+  <p-table [value]="transactions" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ "transaction_sender" | translate }}</th>
+        <th>{{ "transaction_reciever" | translate }}</th>
+        <th>{{ "amount" | translate }}</th>
+        <th>{{ "description" | translate }}</th>
+        <th>{{ "reply" | translate }}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-transaction>
+      <tr>
+        <td>{{ transaction.accountSenderId }}</td>
+        <td>{{ transaction.accountRecieverId }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.description }}</td>
+        <td>
+          <div class="sizes">
+            <p-button
+              label=" {{ 'accept' | translate }}  "
+              (onClick)="accepttransaction(transaction.id)"
+              icon="pi pi-check"
+              styleClass="p-button-sm"
+            ></p-button>
+            <p-button
+              label=" {{ 'reject' | translate }}  "
+              (onClick)="rejecttransaction(transaction.id)"
+              icon="pi pi-check"
+              styleClass="p-button"
+            ></p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-toast position="top-right"></p-toast>
+</div>
+
+<ng-template #go>
+  <div>
+    <h1>404 Error</h1>
+    <h1>Page Not Found</h1>
+  </div>
+</ng-template>

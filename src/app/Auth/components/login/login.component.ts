@@ -11,6 +11,7 @@ import {
 import { LoginResponse } from 'src/app/model/loginResponse.model';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
     private readonly fb: FormBuilder,
     private auth: AuthService,
     private tokenStorage: TokenStorageService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private translate: TranslateService
   ) {
     this.form = this.fb.group({
       username: [null, [Validators.required, Validators.minLength(5)]],
@@ -40,7 +42,7 @@ export class LoginComponent implements OnInit {
 
   addSingle() {
     this.messageService.add({
-      severity: 'success',
+      severity: 'error',
       detail: this.message,
     });
   }
@@ -61,7 +63,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.log('hhh', error);
-        this.message = error.error.message;
+        this.message = this.translate.instant(error.error.message);
         this.addSingle();
       }
     );

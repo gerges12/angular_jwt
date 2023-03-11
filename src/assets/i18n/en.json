@@ -26,5 +26,6 @@
   "REJECTED": "REJECTED",
   "done": "done",
   "dialog_title": "please enter transaction detail",
-  "account_not_found": "account not found"
+  "account_not_found": "account not found",
+  "username_or_password_is_not_correct": "error in username or password"
 }

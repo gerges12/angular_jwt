@@ -27,6 +27,7 @@ export class EmployeeComponent implements OnInit {
   transactions!: any[];
   info: any;
   message: string | undefined;
+  isEmployee: boolean | undefined;
 
   constructor(
     private trans: TransactionsService,
@@ -43,6 +44,9 @@ export class EmployeeComponent implements OnInit {
       username: this.token.getUsername(),
       userid: this.token.getUserid(),
     };
+    if (this.token.getUsertype() == 'employee') {
+      this.isEmployee = true;
+    }
   }
 
   addSingle() {
