@@ -24,6 +24,7 @@
   "having_account": "  if you account Please login. here",
   "ACCEPTED": "ACCEPTED",
   "REJECTED": "REJECTED",
+  "PENDING": "PENDING",
   "done": "done",
   "dialog_title": "please enter transaction detail",
   "account_not_found": "account not found",

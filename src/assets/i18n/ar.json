@@ -24,6 +24,7 @@
   "having_account": "اذ كان لديك حساب سجل الان",
   "ACCEPTED": "مقبول",
   "REJECTED": "مرفوض",
+  "PENDING": "معلق",
   "done": "اتمام",
   "dialog_title": "يجب ادخال تفاصيل العمليه",
   "account_not_found": "خطا في رقم الحساب",
