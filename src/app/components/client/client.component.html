@@ -66,6 +66,21 @@
         <td>{{ transaction.amount }}</td>
         <td>{{ transaction.description }}</td>
         <td>{{ transaction.transactionStatus }}</td>
+
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="editTransaction(transaction)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          (click)="deleteTransaction(transaction)"
+        ></button>
       </tr>
     </ng-template>
   </p-table>
@@ -80,6 +95,87 @@
 
   <p-toast position="top-right"></p-toast>
 </div>
+
+<p-dialog
+  [(visible)]="transactionDialog"
+  [style]="{ width: '450px' }"
+  header="{{ 'dialog_title' | translate }}"
+  [modal]="true"
+  (onHide)="hideDialog()"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="name">{{ "transaction_reciever" | translate }}</label>
+      <input
+        [disabled]="disableToEdit"
+        type="text"
+        pInputText
+        id="name"
+        [(ngModel)]="detectedtransaction.accountRecieverId"
+        required
+        autofocus
+      />
+    </div>
+    <div class="p-field">
+      <label for="name">{{ "amount" | translate }}</label>
+      <input
+        [disabled]="disableToEdit"
+        type="text"
+        pInputText
+        id="name"
+        [(ngModel)]="detectedtransaction.amount"
+        required
+        autofocus
+      />
+    </div>
+    <div class="p-field">
+      <label for="name">{{ "description" | translate }}</label>
+      <input
+        [disabled]="disableToEdit"
+        type="text"
+        pInputText
+        id="name"
+        [(ngModel)]="detectedtransaction.description"
+        required
+        autofocus
+      />
+    </div>
+    <div class="p-field">
+      <label for="name">{{ "status" | translate }}</label>
+      <input
+        disabled="false"
+        type="text"
+        pInputText
+        id="name"
+        [(ngModel)]="detectedtransaction.transactionStatus"
+        required
+        autofocus
+      />
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveTransaction()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 
 <ng-template #go>
   <div>

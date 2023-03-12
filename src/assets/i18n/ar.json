@@ -28,5 +28,9 @@
   "done": "اتمام",
   "dialog_title": "يجب ادخال تفاصيل العمليه",
   "account_not_found": "خطا في رقم الحساب",
-  "username_or_password_is_not_correct": "خطا في اسم الاحساب او كلمه المرور"
+  "username_or_password_is_not_correct": "خطا في اسم الاحساب او كلمه المرور",
+  "deleted_done_succefully": "تم الحذف بنجاح",
+  "update_done_succefully": "تم التعديل بنجاح",
+  "confirmMessage_for_Delete": "هل انت متاكد من حذف المعامله",
+  "confirm": "تاكيد"
 }

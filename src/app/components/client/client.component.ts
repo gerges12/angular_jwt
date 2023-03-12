@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from 'src/app/Auth/services/token-storage.service';
 import { TransActionInfo } from 'src/app/model/TransActionInfo.model';
 import { TransactionsService } from 'src/app/services/transactions.service';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -14,6 +14,10 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ClientComponent implements OnInit {
   display: boolean = false;
+  transactionDialog: boolean = false;
+  detectedtransaction: any;
+
+  disableToEdit: boolean = true;
 
   transactions!: any[];
 
@@ -29,7 +33,8 @@ export class ClientComponent implements OnInit {
     private transactionService: TransactionsService,
     private messageService: MessageService,
     private trans: TransactionsService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit() {
@@ -75,6 +80,11 @@ export class ClientComponent implements OnInit {
     this.display = true;
   }
 
+  hideDialog() {
+    this.transactionDialog = false;
+    this.disableToEdit = true;
+  }
+
   addTransaction() {
     this.transActionInfo = new TransActionInfo(
       this.transactionForm.value.accountreciever,
@@ -102,10 +112,52 @@ export class ClientComponent implements OnInit {
     }
   }
 
+  saveTransaction() {
+    this.trans.updateTransaction(this.detectedtransaction).subscribe(
+      (data) => {
+        this.message = this.translate.instant(data.message);
+        this.transactionDialog = false;
+        this.disableToEdit = true;
+        this.addSingle();
+        this.loadDataTable();
+      },
+      (error) => {
+        console.log('hgg', error.error.message);
+        this.message = this.translate.instant(error.error.message);
+        this.adderrorMessage();
+      }
+    );
+  }
+
+  editTransaction(transaction: any) {
+    if (
+      transaction.transactionStatus == 'PENDING' ||
+      transaction.transactionStatus == 'معلق'
+    ) {
+      this.disableToEdit = false;
+    }
+
+    this.detectedtransaction = transaction;
+    this.transactionDialog = true;
+  }
+
+  deleteTransaction(transaction: any) {
+    this.confirmationService.confirm({
+      message: this.translate.instant('confirmMessage_for_Delete'),
+      header: this.translate.instant('confirm'),
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.trans.deleteTransaction(transaction.id).subscribe((data) => {
+          this.message = this.translate.instant(data);
+          this.addSingle();
+          this.loadDataTable();
+        });
+      },
+    });
+  }
+
   loadDataTable() {
     this.trans.replayedTransaction(this.token.getUserid()).subscribe((data) => {
-      console.log('fgh', data);
-
       data.forEach((t: { transactionStatus: string }) => {
         t.transactionStatus = this.translate.instant(t.transactionStatus);
       });

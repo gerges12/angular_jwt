@@ -24,6 +24,8 @@ import { MessageService } from 'primeng/api';
 import { NgxTranslateModule } from './translate/translate.module';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -51,8 +53,14 @@ import { DialogModule } from 'primeng/dialog';
     ToastModule,
     NgxTranslateModule,
     DialogModule,
+    ConfirmDialogModule,
   ],
-  providers: [httpInterceptorProviders, MessageService, TranslateService],
+  providers: [
+    httpInterceptorProviders,
+    MessageService,
+    ConfirmationService,
+    TranslateService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

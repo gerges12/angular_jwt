@@ -42,8 +42,7 @@ export class LoginComponent implements OnInit {
 
   addSingle() {
     this.messageService.add({
-      severity: this.message,
-      summary: 'Service Message',
+      severity: 'error',
       detail: this.message,
     });
   }

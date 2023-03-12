@@ -28,5 +28,9 @@
   "done": "done",
   "dialog_title": "please enter transaction detail",
   "account_not_found": "account not found",
-  "username_or_password_is_not_correct": "error in username or password"
+  "username_or_password_is_not_correct": "error in username or password",
+  "deleted_done_succefully": "deleted done succefully",
+  "update_done_succefully": "update done succefully",
+  "confirmMessage_for_Delete": "Are you sure you want to delete this transaction ?",
+  "confirm": "confirm"
 }

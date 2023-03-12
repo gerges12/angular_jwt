@@ -26,6 +26,10 @@ export class TransactionsService {
 
   private repliedtransactionEndPoint =
     'http://localhost:8080/MIS/transaction/getrepliedtransaction/';
+  private deletetransactionEndPoint =
+    'http://localhost:8080/MIS/transaction/deletetransaction/';
+  private updateransactionEndPoint =
+    'http://localhost:8080/MIS/transaction/updatetransaction/';
 
   private downloadtransactionEndPoint =
     'http://localhost:8080/MIS/transaction/downlowdPdf/';
@@ -66,5 +70,19 @@ export class TransactionsService {
     return this.http.post(this.rejectToTransactionEndPoint, transactionId, {
       responseType: 'text',
     });
+  }
+
+  deleteTransaction(transactionId: number) {
+    return this.http.delete(this.deletetransactionEndPoint + transactionId, {
+      responseType: 'text',
+    });
+  }
+
+  updateTransaction(transaction: any): Observable<any> {
+    return this.http.put(
+      this.updateransactionEndPoint,
+      transaction,
+      httpOptions
+    );
   }
 }
