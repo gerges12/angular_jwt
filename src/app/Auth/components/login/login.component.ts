@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
 
   addSingle() {
     this.messageService.add({
-      severity: 'error',
+      severity: this.message,
+      summary: 'Service Message',
       detail: this.message,
     });
   }
@@ -67,11 +68,5 @@ export class LoginComponent implements OnInit {
         this.addSingle();
       }
     );
-  }
-
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    // window.location.reload();
   }
 }
