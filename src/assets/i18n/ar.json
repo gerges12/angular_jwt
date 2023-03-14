@@ -32,5 +32,7 @@
   "deleted_done_succefully": "تم الحذف بنجاح",
   "update_done_succefully": "تم التعديل بنجاح",
   "confirmMessage_for_Delete": "هل انت متاكد من حذف المعامله",
-  "confirm": "تاكيد"
+  "confirm": "تاكيد",
+  "tranaction_detail": "تفاصيل العملية",
+  "time": "التاريخ و الوقت"
 }

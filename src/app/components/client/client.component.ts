@@ -17,6 +17,8 @@ export class ClientComponent implements OnInit {
   transactionDialog: boolean = false;
   detectedtransaction: any;
 
+  statusForDisabledProberty: boolean = true;
+
   disableToEdit: boolean = true;
 
   transactions!: any[];
@@ -113,6 +115,7 @@ export class ClientComponent implements OnInit {
   }
 
   saveTransaction() {
+    this.detectedtransaction.transactionStatus = 'PENDING';
     this.trans.updateTransaction(this.detectedtransaction).subscribe(
       (data) => {
         this.message = this.translate.instant(data.message);
@@ -125,10 +128,13 @@ export class ClientComponent implements OnInit {
         console.log('hgg', error.error.message);
         this.message = this.translate.instant(error.error.message);
         this.adderrorMessage();
+        this.loadDataTable();
       }
     );
   }
-
+  onChangeDate(value: string | number | Date) {
+    this.detectedtransaction.time = new Date(value);
+  }
   editTransaction(transaction: any) {
     if (
       transaction.transactionStatus == 'PENDING' ||
@@ -137,6 +143,7 @@ export class ClientComponent implements OnInit {
       this.disableToEdit = false;
     }
 
+    console.log('ghghgh', transaction);
     this.detectedtransaction = transaction;
     this.transactionDialog = true;
   }

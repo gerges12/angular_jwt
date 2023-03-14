@@ -8,6 +8,8 @@
         <th>{{ "transaction_reciever" | translate }}</th>
         <th>{{ "amount" | translate }}</th>
         <th>{{ "description" | translate }}</th>
+        <th>{{ "time" | translate }}</th>
+
         <th>{{ "reply" | translate }}</th>
       </tr>
     </ng-template>
@@ -17,6 +19,8 @@
         <td>{{ transaction.accountRecieverId }}</td>
         <td>{{ transaction.amount }}</td>
         <td>{{ transaction.description }}</td>
+        <td>{{ transaction.time | date : "M/d/yy, h:mm a" }}</td>
+
         <td>
           <div class="sizes">
             <p-button

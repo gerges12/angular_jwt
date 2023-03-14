@@ -61,9 +61,11 @@ export class TransactionsService {
   }
 
   acceptToTransaction(transactionId: number): Observable<any> {
-    return this.http.post(this.acceptToTransactionEndPoint, transactionId, {
-      responseType: 'text',
-    });
+    return this.http.post(
+      this.acceptToTransactionEndPoint,
+      transactionId,
+      httpOptions
+    );
   }
 
   rejectToTransaction(transactionId: number): Observable<any> {

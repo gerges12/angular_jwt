@@ -99,7 +99,7 @@
 <p-dialog
   [(visible)]="transactionDialog"
   [style]="{ width: '450px' }"
-  header="{{ 'dialog_title' | translate }}"
+  header="{{ 'tranaction_detail' | translate }}"
   [modal]="true"
   (onHide)="hideDialog()"
   styleClass="p-fluid"
@@ -129,6 +129,23 @@
         autofocus
       />
     </div>
+
+    <div class="p-field">
+      <label for="name">{{ "time" | translate }}</label>
+      <input
+        datetime="yyyy-MM-dd"
+        [disabled]="statusForDisabledProberty"
+        type="text"
+        pInputText
+        id="name"
+        [ngModel]="detectedtransaction.time | date : 'M/d/yy, h:mm a'"
+        (ngModelChange)="onChangeDate($event)"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        required
+        autofocus
+      />
+    </div>
+
     <div class="p-field">
       <label for="name">{{ "description" | translate }}</label>
       <input
@@ -144,7 +161,7 @@
     <div class="p-field">
       <label for="name">{{ "status" | translate }}</label>
       <input
-        disabled="false"
+        [disabled]="statusForDisabledProberty"
         type="text"
         pInputText
         id="name"

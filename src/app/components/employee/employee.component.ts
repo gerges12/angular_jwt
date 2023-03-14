@@ -56,12 +56,25 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  accepttransaction(transactionId: number) {
-    this.trans.acceptToTransaction(transactionId).subscribe((data) => {
-      this.message = this.translate.instant(data);
-      this.addSingle();
-      this.loadDataTable();
+  addErrorMessage() {
+    this.messageService.add({
+      severity: 'error',
+      detail: this.message,
     });
+  }
+
+  accepttransaction(transactionId: number) {
+    this.trans.acceptToTransaction(transactionId).subscribe(
+      (data) => {
+        this.message = this.translate.instant(data.message);
+        this.addSingle();
+        this.loadDataTable();
+      },
+      (error) => {
+        this.message = this.translate.instant(error.error.message);
+        this.addErrorMessage();
+      }
+    );
   }
 
   rejecttransaction(transactionId: number) {
