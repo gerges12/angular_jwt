@@ -1,0 +1,31 @@
+<p-dropdown
+  #deptDropDown
+  [options]="MobileCategories"
+  [(ngModel)]="selectedCategory"
+  optionLabel="categoryName"
+  [filter]="true"
+  [showClear]="true"
+  placeholder="phones"
+  (onChange)="onChange($event)"
+>
+  --
+</p-dropdown>
+
+<p-table [value]="products" [tableStyle]="{ 'min-width': '30rem' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>product number</th>
+      <th>product name</th>
+      <th>product price</th>
+      <th>productEvaluation</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.productId }}</td>
+      <td>{{ product.productName }}</td>
+      <td>{{ product.productPrice }}</td>
+      <td>{{ product.productEvaluation }}</td>
+    </tr>
+  </ng-template>
+</p-table>
