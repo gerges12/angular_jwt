@@ -38,11 +38,20 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.loadDataTable();
     this.loadCategory();
+    this.MobileCategories = [
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' },
+    ];
   }
 
   onChange(event: any) {
-    console.log('event :' + event.value);
-    this.loadFilteredDataTable(1);
+    console.log('event :', event.value);
+    console.log('you selected -> :', this.selectedCategory);
+
+    // this.loadFilteredDataTable(1);x
   }
 
   loadDataTable() {
