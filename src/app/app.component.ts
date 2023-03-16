@@ -9,6 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  isAuth: boolean = false;
+
   constructor(
     private router: Router,
     private token: TokenStorageService,
@@ -17,7 +19,12 @@ export class AppComponent {
     translate.setDefaultLang('en');
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.token.getToken() != null) {
+      this.isAuth = true;
+    }
+    console.log('status of ahtu', this.isAuth);
+  }
   login() {
     this.router.navigateByUrl('auth/login');
   }
@@ -27,5 +34,10 @@ export class AppComponent {
   }
   signup() {
     this.router.navigateByUrl('auth/signup');
+  }
+
+  IsAuth(): boolean {
+    // window.location.reload();
+    return this.isAuth;
   }
 }

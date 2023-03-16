@@ -1,15 +1,11 @@
 export interface User {
-  email: string;
+  name: string;
   username: string;
   password: string;
-  sex: string;
-  phone: string;
-  age: string;
-  userType: string;
-  id?: number;
-  name?: string;
-  netSallery?: number;
-  address?: string;
+  email: string;
+  phonenumber: string;
+  usertype: string;
+  userId?: number;
 }
 
 export interface LoginModel {

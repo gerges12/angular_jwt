@@ -12,14 +12,34 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="IsAuth(); else home">
+          <a
+            class="nav-link active text-white"
+            aria-current="page"
+            routerLink="/profile"
+            >{{ "profile" | translate }}</a
+          >
+        </li>
+        <ng-template #home>
+          <li class="nav-item">
+            <a
+              class="nav-link active text-white"
+              aria-current="page"
+              routerLink="/"
+              >{{ "home" | translate }}</a
+            >
+          </li>
+        </ng-template>
+
         <li class="nav-item">
           <a
             class="nav-link active text-white"
             aria-current="page"
-            routerLink="/"
-            >{{ "home" | translate }}</a
+            routerLink="/product"
+            >product</a
           >
         </li>
       </ul>

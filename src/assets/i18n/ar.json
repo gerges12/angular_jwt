@@ -34,5 +34,6 @@
   "confirmMessage_for_Delete": "هل انت متاكد من حذف المعامله",
   "confirm": "تاكيد",
   "tranaction_detail": "تفاصيل العملية",
-  "time": "التاريخ و الوقت"
+  "time": "التاريخ و الوقت",
+  "profile": "حسابي"
 }

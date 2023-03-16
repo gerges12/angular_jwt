@@ -34,5 +34,6 @@
   "confirmMessage_for_Delete": "Are you sure you want to delete this transaction ?",
   "confirm": "confirm",
   "tranaction_detail": "transaction detail",
-  "time": "time and date"
+  "time": "time and date",
+  "profile": "profile"
 }

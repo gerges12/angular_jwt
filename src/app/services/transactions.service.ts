@@ -6,11 +6,6 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
-let headers: HttpHeaders = new HttpHeaders({
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
-});
-
 @Injectable({
   providedIn: 'root',
 })
